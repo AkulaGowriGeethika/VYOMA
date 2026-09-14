@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>IMU TEST</h2>
+
+<p id="acc">Waiting...</p>
+<p id="gyro">Waiting...</p>
+
+<script>
+window.addEventListener("devicemotion", function(e) {
+
+    const a = e.accelerationIncludingGravity;
+    const r = e.rotationRate;
+
+    document.getElementById("acc").innerText =
+        "ACC: " +
+        (a?.x ?? 0).toFixed(2) + " , " +
+        (a?.y ?? 0).toFixed(2) + " , " +
+        (a?.z ?? 0).toFixed(2);
+
+    document.getElementById("gyro").innerText =
+        "GYRO: " +
+        (r?.alpha ?? 0).toFixed(2) + " , " +
+        (r?.beta ?? 0).toFixed(2) + " , " +
+        (r?.gamma ?? 0).toFixed(2);
+});
+
+alert("Sensor listener started. Move the phone.");
+</script>
+</body>
+</html>

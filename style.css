@@ -1,0 +1,1586 @@
+/* =========================================================
+   VYOMA SMART NAVIGATION
+   CLEAN MOBILE UI
+========================================================= */
+
+:root {
+  --bg: #ffffff;
+  --surface: rgba(255,255,255,.96);
+  --surface-solid: #ffffff;
+
+  --text: #111827;
+  --muted: #64748b;
+
+  --border: #e2e8f0;
+
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+
+  --danger: #ef4444;
+  --danger-dark: #dc2626;
+
+  --success: #16a34a;
+
+  --purple: #7c3aed;
+
+  --shadow:
+    0 8px 28px rgba(15,23,42,.14);
+
+  --radius: 17px;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: var(--text);
+
+  background: var(--bg);
+}
+
+
+button,
+input {
+  font: inherit;
+}
+
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+
+.ui-icon {
+  width: 20px;
+  height: 20px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 2;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+#map {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 1;
+}
+
+
+.leaflet-control-attribution {
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   RED OVERLAY
+========================================================= */
+
+#lossOverlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 700;
+
+  pointer-events: none;
+
+  display: none;
+
+  background:
+    rgba(239,68,68,.13);
+}
+
+
+body.gnss-loss #lossOverlay {
+  display: block;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.app-header {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 62px;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 7px 14px;
+
+  background:
+    rgba(255,255,255,.95);
+
+  backdrop-filter: blur(14px);
+
+  border-bottom:
+    1px solid rgba(226,232,240,.8);
+
+  box-shadow:
+    0 2px 14px rgba(15,23,42,.08);
+}
+
+
+.brand {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+.logo {
+  width: 42px;
+  height: 42px;
+
+  object-fit: contain;
+
+  border-radius: 8px;
+}
+
+
+.brand-text {
+  line-height: 1.05;
+}
+
+
+.brand-name {
+  font-size: 19px;
+
+  font-weight: 900;
+
+  letter-spacing: .4px;
+}
+
+
+.brand-subtitle {
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  font-weight: 600;
+}
+
+
+.header-status {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: var(--success);
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: var(--success);
+}
+
+
+/* =========================================================
+   SPEED CARD
+========================================================= */
+
+.navigation-info {
+  position: fixed;
+
+  top: 76px;
+  left: 10px;
+
+  z-index: 850;
+
+  width: 190px;
+
+  padding: 11px 13px;
+
+  border-radius: 17px;
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(14px);
+}
+
+
+.nav-info-main {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+.nav-speed {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 4px;
+}
+
+
+.nav-speed span {
+  font-size: 27px;
+
+  font-weight: 900;
+}
+
+
+.nav-speed small {
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+
+.nav-heading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+.nav-heading .ui-icon {
+  width: 18px;
+  height: 18px;
+}
+
+
+.nav-status {
+  margin-top: 5px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   MODE CARD
+========================================================= */
+
+.mode-card {
+  position: fixed;
+
+  top: 76px;
+  left: 210px;
+  right: 10px;
+
+  z-index: 850;
+
+  min-height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 8px 10px;
+
+  border-radius: 16px;
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(14px);
+}
+
+
+.mode-icon {
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #eff6ff;
+
+  color: var(--primary);
+}
+
+
+.mode-icon .ui-icon {
+  width: 17px;
+  height: 17px;
+}
+
+
+.mode-text {
+  min-width: 0;
+}
+
+
+#modeTitle {
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+
+.mode-card small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--muted);
+
+  font-size: 8px;
+
+  font-weight: 600;
+}
+
+
+.mode-indicator {
+  margin-left: auto;
+
+  padding: 4px 6px;
+
+  border-radius: 999px;
+
+  background: #dcfce7;
+
+  color: #166534;
+
+  font-size: 7px;
+
+  font-weight: 900;
+}
+
+
+.mode-indicator.prototype {
+  background: #ede9fe;
+
+  color: #6d28d9;
+}
+
+
+.mode-indicator.loss {
+  background: #fee2e2;
+
+  color: #991b1b;
+}
+
+
+/* =========================================================
+   GUIDANCE
+========================================================= */
+
+.guidance-card {
+  position: fixed;
+
+  top: 142px;
+
+  left: 10px;
+  right: 10px;
+
+  z-index: 840;
+
+  min-height: 68px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px 12px;
+
+  border-radius: 17px;
+
+  background: var(--surface);
+
+  box-shadow: var(--shadow);
+
+  backdrop-filter: blur(14px);
+}
+
+
+.guidance-icon {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eff6ff;
+
+  color: var(--primary);
+}
+
+
+.guidance-icon .ui-icon {
+  width: 20px;
+  height: 20px;
+}
+
+
+.guidance-content {
+  min-width: 0;
+}
+
+
+#guidanceInstruction {
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+
+#guidanceDistance {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+.guidance-road {
+  margin-top: 2px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   RECENTER
+========================================================= */
+
+.floating-button {
+  position: fixed;
+
+  z-index: 900;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--surface-solid);
+
+  color: var(--text);
+
+  box-shadow: var(--shadow);
+}
+
+
+.recenter-button {
+  top: 142px;
+  right: 10px;
+
+  transform:
+    translateY(0);
+}
+
+
+.floating-button:active {
+  transform: scale(.94);
+}
+
+
+/* =========================================================
+   GNSS CONTROLS
+   FIXED TO MAP — NEVER INSIDE SHEET
+========================================================= */
+
+.gnss-controls {
+  position: fixed !important;
+
+  top: 220px !important;
+
+  right: 10px !important;
+
+  left: auto !important;
+  bottom: auto !important;
+
+  width: 145px !important;
+
+  z-index: 3000 !important;
+
+  display: flex !important;
+
+  flex-direction: column !important;
+
+  gap: 7px !important;
+
+  pointer-events: auto !important;
+}
+
+
+.gnss-button {
+  position: relative !important;
+
+  width: 145px !important;
+
+  min-height: 38px !important;
+
+  display: flex !important;
+
+  align-items: center !important;
+
+  justify-content: center !important;
+
+  gap: 5px !important;
+
+  padding: 7px 5px !important;
+
+  border-radius: 10px !important;
+
+  color: white !important;
+
+  font-size: 7.2px !important;
+
+  font-weight: 900 !important;
+
+  white-space: nowrap !important;
+
+  box-shadow:
+    0 5px 15px rgba(15,23,42,.20);
+
+  transition:
+    transform .15s,
+    filter .15s;
+}
+
+
+.gnss-button .ui-icon {
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+}
+
+
+.loss-button {
+  background: #ef4444 !important;
+}
+
+
+.restore-button {
+  background: #16a34a !important;
+}
+
+
+.gnss-button:active {
+  transform: scale(.97);
+}
+
+
+/* =========================================================
+   BOTTOM SHEET
+========================================================= */
+
+.bottom-sheet {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+
+  bottom: 67px;
+
+  height:
+    min(470px, calc(100vh - 80px));
+
+  z-index: 1000;
+
+  background: var(--surface);
+
+  border-radius:
+    22px 22px 0 0;
+
+  box-shadow:
+    0 -10px 35px rgba(15,23,42,.16);
+
+  backdrop-filter: blur(18px);
+
+  transition:
+    transform .28s ease,
+    height .28s ease;
+}
+
+
+.bottom-sheet.hidden-sheet {
+  transform:
+    translateY(110%);
+}
+
+
+.bottom-sheet.expanded {
+  height:
+    calc(100vh - 67px);
+}
+
+
+.sheet-handle-area {
+  height: 35px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  touch-action: none;
+}
+
+
+.sheet-handle {
+  width: 48px;
+  height: 5px;
+
+  border-radius: 99px;
+
+  background: #cbd5e1;
+}
+
+
+.sheet-content {
+  height:
+    calc(100% - 35px);
+
+  overflow-y: auto;
+
+  padding:
+    0 15px 25px;
+}
+
+
+.panel {
+  display: none;
+}
+
+
+.active-panel {
+  display: block;
+}
+
+
+.panel-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 15px;
+
+  font-size: 17px;
+
+  font-weight: 900;
+}
+
+
+.panel-title .ui-icon {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.route-input {
+  margin-bottom: 10px;
+}
+
+
+.route-input label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+
+.route-input input {
+  width: 100%;
+
+  height: 62px;
+
+  padding:
+    0 18px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 14px;
+
+  outline: none;
+
+  background: var(--surface-solid);
+
+  color: var(--text);
+
+  font-size: 14px;
+}
+
+
+.route-input input:focus {
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 3px rgba(37,99,235,.10);
+}
+
+
+.input-row {
+  display: flex;
+
+  gap: 8px;
+}
+
+
+.input-row input {
+  flex: 1;
+}
+
+
+.small-action {
+  width: 62px;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  background: #eff6ff;
+
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.primary-button,
+.action-button,
+.secondary-button {
+  width: 100%;
+
+  min-height: 64px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 10px;
+
+  border-radius: 14px;
+
+  font-size: 17px;
+
+  font-weight: 900;
+}
+
+
+.primary-button {
+  background: var(--primary);
+
+  color: white;
+}
+
+
+.action-button {
+  background: #0f172a;
+
+  color: white;
+}
+
+
+.prototype-action {
+  background: var(--purple);
+}
+
+
+.secondary-button {
+  background: #f1f5f9;
+
+  color: #334155;
+}
+
+
+.system-status {
+  margin-top: 12px;
+
+  padding: 11px 13px;
+
+  border-radius: 11px;
+
+  background: #f8fafc;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   ROUTE
+========================================================= */
+
+.route-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 8px;
+}
+
+
+.stat-box {
+  padding: 12px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 12px;
+
+  background:
+    var(--surface-solid);
+}
+
+
+.stat-box span {
+  display: block;
+
+  color: var(--muted);
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+
+.stat-box strong {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 13px;
+}
+
+
+.route-info {
+  margin-top: 12px;
+
+  padding: 12px;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  color: var(--muted);
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   AI
+========================================================= */
+
+.ai-system-status,
+.imu-status {
+  margin-bottom: 11px;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  background: #dcfce7;
+
+  color: #166534;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+
+.ai-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 8px;
+}
+
+
+.ai-metric {
+  padding: 12px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 12px;
+
+  background:
+    var(--surface-solid);
+}
+
+
+.ai-metric span {
+  display: block;
+
+  color: var(--muted);
+
+  font-size: 8px;
+
+  font-weight: 800;
+}
+
+
+.ai-metric strong {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 14px;
+}
+
+
+.processing-bar {
+  height: 7px;
+
+  margin-top: 12px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #e2e8f0;
+}
+
+
+.processing-fill {
+  width: 0%;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: var(--primary);
+
+  transition:
+    width .25s;
+}
+
+
+.ai-explanation {
+  margin-top: 10px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+.imu-section {
+  margin-top: 18px;
+}
+
+
+.sub-title {
+  margin-bottom: 8px;
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+
+.imu-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 8px;
+}
+
+
+.imu-grid > div {
+  padding: 10px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 11px;
+
+  background:
+    var(--surface-solid);
+}
+
+
+.imu-grid span {
+  display: block;
+
+  color: var(--muted);
+
+  font-size: 8px;
+
+  font-weight: 800;
+}
+
+
+.imu-grid strong {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+.setting-row {
+  min-height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 4px;
+
+  border-bottom:
+    1px solid var(--border);
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+.setting-row input {
+  width: 20px;
+  height: 20px;
+}
+
+
+/* =========================================================
+   BOTTOM NAV
+========================================================= */
+
+.bottom-nav {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 67px;
+
+  z-index: 4000;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  background:
+    var(--surface-solid);
+
+  border-top:
+    1px solid var(--border);
+
+  box-shadow:
+    0 -4px 20px rgba(15,23,42,.08);
+}
+
+
+.bottom-nav-item {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 3px;
+
+  color: #64748b;
+
+  background: transparent;
+
+  font-size: 9px;
+
+  font-weight: 800;
+}
+
+
+.bottom-nav-item .ui-icon {
+  width: 19px;
+  height: 19px;
+}
+
+
+.bottom-nav-item.active {
+  color: var(--primary);
+}
+
+
+/* =========================================================
+   VEHICLE
+========================================================= */
+
+.vyoma-vehicle {
+  background: transparent !important;
+
+  border: none !important;
+}
+
+
+.vehicle-marker {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+
+  border: 3px solid white;
+
+  box-shadow:
+    0 4px 14px rgba(15,23,42,.30);
+}
+
+
+.vehicle-marker.loss {
+  background: #ef4444;
+}
+
+
+/* =========================================================
+   GNSS LOSS — RED EVERYTHING
+========================================================= */
+
+body.gnss-loss {
+  --primary: #ef4444;
+  --primary-dark: #dc2626;
+  --success: #ef4444;
+}
+
+
+body.gnss-loss .app-header,
+body.gnss-loss .navigation-info,
+body.gnss-loss .mode-card,
+body.gnss-loss .guidance-card,
+body.gnss-loss .floating-button,
+body.gnss-loss .bottom-sheet,
+body.gnss-loss .bottom-nav {
+  border-color:
+    rgba(239,68,68,.65);
+}
+
+
+body.gnss-loss .header-status {
+  color: #dc2626;
+}
+
+
+body.gnss-loss .status-dot {
+  background: #ef4444;
+}
+
+
+body.gnss-loss .mode-icon,
+body.gnss-loss .guidance-icon {
+  background: #fee2e2;
+
+  color: #dc2626;
+}
+
+
+body.gnss-loss .mode-indicator {
+  background: #fee2e2;
+
+  color: #991b1b;
+}
+
+
+body.gnss-loss .gnss-button {
+  background: #dc2626 !important;
+}
+
+
+body.gnss-loss .primary-button,
+body.gnss-loss .processing-fill {
+  background: #dc2626;
+}
+
+
+body.gnss-loss .panel-title .ui-icon,
+body.gnss-loss .bottom-nav-item.active {
+  color: #dc2626;
+}
+
+
+body.gnss-loss .ai-system-status,
+body.gnss-loss .imu-status {
+  background: #fee2e2;
+
+  color: #991b1b;
+}
+
+
+body.gnss-loss .system-status {
+  background: #fee2e2;
+
+  color: #991b1b;
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark-mode {
+  --bg: #020617;
+
+  --surface: rgba(15,23,42,.96);
+
+  --surface-solid: #0f172a;
+
+  --text: #f8fafc;
+
+  --muted: #94a3b8;
+
+  --border: #334155;
+}
+
+
+body.dark-mode .app-header,
+body.dark-mode .bottom-nav {
+  background:
+    rgba(15,23,42,.97);
+}
+
+
+body.dark-mode .route-info,
+body.dark-mode .system-status,
+body.dark-mode .secondary-button {
+  background: #1e293b;
+
+  color: #cbd5e1;
+}
+
+
+body.dark-mode .route-input input {
+  background: #020617;
+
+  color: #f8fafc;
+}
+
+
+body.dark-mode .mode-icon,
+body.dark-mode .guidance-icon,
+body.dark-mode .small-action {
+  background: #172554;
+}
+
+
+body.dark-mode .processing-bar {
+  background: #334155;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .app-header {
+    height: 59px;
+  }
+
+
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+
+  .brand-name {
+    font-size: 18px;
+  }
+
+
+  .navigation-info {
+    top: 70px;
+
+    left: 10px;
+
+    width: 170px;
+  }
+
+
+  .nav-speed span {
+    font-size: 23px;
+  }
+
+
+  .mode-card {
+    top: 70px;
+
+    left: 190px;
+
+    right: 10px;
+
+    min-width: 0;
+
+    padding: 8px;
+  }
+
+
+  .mode-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+
+  .mode-indicator {
+    display: none;
+  }
+
+
+  .guidance-card {
+    top: 132px;
+
+    left: 10px;
+
+    right: 165px;
+
+    width: auto;
+  }
+
+
+  .recenter-button {
+    top: 132px;
+
+    right: 10px;
+
+    transform:
+      translateY(0);
+  }
+
+
+  .gnss-controls {
+    top: 215px !important;
+
+    right: 10px !important;
+
+    width: 145px !important;
+  }
+
+
+  .gnss-button {
+    width: 145px !important;
+
+    min-height: 36px !important;
+
+    font-size: 7px !important;
+  }
+
+
+  .bottom-sheet {
+    bottom: 67px;
+
+    height:
+      min(470px, calc(100vh - 72px));
+  }
+
+
+  .route-stats {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+
+  .imu-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 430px) {
+
+  .navigation-info {
+    width: 165px;
+  }
+
+
+  .mode-card {
+    left: 183px;
+  }
+
+
+  .mode-card .mode-icon {
+    display: none;
+  }
+
+
+  .guidance-card {
+    right: 160px;
+  }
+
+
+  .gnss-controls {
+    top: 215px !important;
+
+    right: 8px !important;
+
+    width: 142px !important;
+  }
+
+
+  .gnss-button {
+    width: 142px !important;
+
+    font-size: 6.8px !important;
+  }
+
+
+  .primary-button,
+  .action-button,
+  .secondary-button {
+    min-height: 60px;
+
+    font-size: 16px;
+  }
+
+}
